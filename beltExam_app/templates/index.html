@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Your Trip Advisor Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+<body>
+<h1>Welcome!</h1>
+
+<div class=reg_box>
+	<h2>Register</h2>
+	<form action="/register" method="post">
+		{% csrf_token %}
+		<div class="reg_form">
+			{% if messages %}
+                              {% for message in messages %}
+                                  {%if "fullname" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                     <p>Name:<input type="text" class="form-control" id="name" name="name" placeholder="name"></p>
+        	{% if messages %}
+                              {% for message in messages %}
+                                  {%if "username" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                      <p>Username:<input type="text" class="form-control" id="username" name="username" placeholder="username"></p>
+             {% if messages %}
+                              {% for message in messages %}
+                                  {%if "reg_password" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                      <p>Password:<input type="password" class="form-control" id="password" name="password" placeholder="password"></p>
+	<small id="passwordHelp" class="form-text text-muted">*Your password must be at least 8 characters</small>
+             {% if messages %}
+                              {% for message in messages %}
+                                  {%if "confirm_pw" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                      <p>Confirm Password:<input type="password" class="form-control" id="confirm_pw" name="confirm_pw" placeholder="confirm password"></p>
+	<button type="submit" class="btn btn-primary">Register</button>
+</div>
+	</form>
+<div class=login_box>
+	<h2></h2>
+	<form action="/login" method="post">
+		{% csrf_token %}
+		 {% if messages %}
+                              {% for message in messages %}
+                                  {%if "loginusername" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+	<p>Username:<input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="username"></p>
+	{% if messages %}
+                              {% for message in messages %}
+                                  {%if "loginpass" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+	<p>Password:<input type="password" class="form-control" id="loginpass" name="loginpass" placeholder="password"></p>
+	<button type="submit" class="btn btn-primary">Log In</button>
+	</form>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

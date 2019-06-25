@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Add a Trip</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+
+    <h1>Add a Trip</h1>
+    <a href="/logout">Logout</a>
+     <a href="/dashboard">Home</a>
+    
+    <form class="tripForm" action="/addtrip" method="post">
+       {%csrf_token%}
+      <div class="fields">
+      {% if messages %}
+            {% for message in messages %}
+                  {%if "destination" in message.tags%}
+                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                {%endif%}
+              {% endfor %}
+      {% endif %}
+      <p>Destination:<input type="text" class="form-control" id="destination" name="destination" placeholder="Destination"></p>
+      <p>Reason for Trip:<input type="text" class="form-control" id="reason_for_trip" name="reason_for_trip" placeholder="Reason For Trip"></p>
+      {% if messages %}
+            {% for message in messages %}
+                  {%if "departure_date" in message.tags%}
+                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                {%endif%}
+              {% endfor %}
+      {% endif %}
+      <p>Departure Date:<input type="Date" class="form-control" id="departure_date" name="departure_date" placeholder="Departure Date"></p>
+        {% if messages %}
+            {% for message in messages %}
+                  {%if "return_date" in message.tags%}
+                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                {%endif%}
+              {% endfor %}
+      {% endif %}
+      <p>Return Date:<input type="Date" class="form-control" id="return_date" name="return_date" placeholder="Return Date"></p>
+      <input type="submit" name="" value="Add Trip">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
